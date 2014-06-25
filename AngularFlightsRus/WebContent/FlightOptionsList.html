@@ -1,0 +1,50 @@
+<div style='width: 1150px; margin-left: auto; margin-right: auto' class='panel panel-primary'>
+
+	<div class='panel-heading'>Find a flight</div>
+
+	<div class='panel-body'>
+
+		<table class='table'>
+			<tr>
+				<th> Flight # </th>
+				<th> Outward Bound [Departing]  </th>
+				<th> Outward Bound [Arriving] </th>
+				<th> Inward Bound [Departing]  </th>
+				<th> Inward Bound [Arriving] </th>
+				<th> Cost [&pound] </th>
+				<th> choose</th>
+			</tr>
+			<tr 
+			    ng-repeat="flightOption in flightOptions">
+				<td>
+					<span>{{flightOption.flightNumber}}</span>
+				</td>
+				<td>
+					<span>{{flightOption.departFrom}}  [{{flightOption.outgoing_departure}}] </span>
+				</td>
+				<td>
+					<span>{{flightOption.arriveAt}} [{{flightOption.outgoing_arrival}}]</span>
+				</td>
+
+				<td>
+					<span>{{flightOption.arriveAt}}  [{{flightOption.returning_departure}}] </span>
+				</td>
+				<td>
+					<span>{{flightOption.departFrom}} [{{flightOption.returning_arrival}}]</span>
+				</td>
+
+				<td>
+					<span class='badge'> {{flightOption.totalCost}}</span>
+				</td>
+
+				<td>
+				<!-- 
+					<a class="btn btn-primary btn-sm" role="button" ng-click="selectedFlight(flightOption.flightNumber)"> select</a>								
+				 -->
+					<a class="btn btn-primary btn-sm" role="button" ng-click="selectedFlight(flightOption)"> select</a>				
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+</div>

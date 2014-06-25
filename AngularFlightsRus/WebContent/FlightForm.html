@@ -1,0 +1,80 @@
+<!-- form to book flights-->
+<div style='width: 1150px; margin-left: auto; margin-right: auto'
+	class='panel panel-primary'>
+
+	<!-- Panel Heading-->
+	<div class='panel-heading'>Find a flight</div>
+
+	<div class='panel-body'>
+
+		<form role="form" class='form-horizontal' novalidate>
+		 
+			<div id="flightQuery">
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Destination: </label>
+					<div class="col-sm-4">
+						<select class='form-control' ng-model="formDetails.destination"
+							ng-options="c.name for c in destinations"></select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Departure: </label>
+					<div class="col-sm-4">
+						<select class='form-control' ng-model="formDetails.departure"
+							ng-options="p.name for p in formDetails.destination.departures"></select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Depart on: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type="date" id="fromDate"
+							name="fromDate" ng-model="formDetails.fromDate"
+							placeholder="yyyy-MM-dd" min="2014-01-01" max="2014-12-31"
+							required />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Return on: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type="date" id="toDate" name="toDate"
+							ng-model="formDetails.toDate" placeholder="yyyy-MM-dd"
+							min="2014-01-01" max="2014-12-31" required />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Number of Adults: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text'
+							ng-model="formDetails.numAdults"
+							placeholder="Enter number of Adults travelling">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Number of Children: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text'
+							ng-model="formDetails.numChildren"
+							placeholder="Enter number of Children travelling">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-4">
+						<button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>
+
+<hr />
+
+<br />

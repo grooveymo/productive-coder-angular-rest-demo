@@ -1,0 +1,211 @@
+<div style='width: 1150px; margin-left: auto; margin-right: auto' class='panel panel-primary'>
+
+	<div class='panel-heading'>Flights Summary</div>
+
+	<div class='panel-body'>
+
+		<div class='form-horizontal'>
+
+			<div class="form-group">
+				<label class="col-sm-2">Flight Number : </label> 
+				<span class="col-sm-4">{{flightDetails.flightNumber}}</span>
+			</div>
+
+			<hr />
+			
+			<div class="form-group">
+				<label class="col-sm-2"> Outward bound </label> 
+				<label class="col-sm-2">Departing : </label> 
+				<span class="col-sm-2">
+					<span class='badge alert-info'> {{flightDetails.departFrom}} </span> 
+					[{{flightDetails.outgoing_departure}}]
+				</span> 
+				<label class="col-sm-2">Arrival : </label> 
+				<span class="col-sm-4">
+					<span class='badge alert-info'> {{flightDetails.arriveAt}} </span>
+					[{{flightDetails.outgoing_arrival}}]
+				</span>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2"> Inward bound </label> 
+				<label class="col-sm-2">Departing : </label> 
+				<span class="col-sm-2">
+					<span class='badge alert-info'> {{flightDetails.arriveAt}} </span>
+					[{{flightDetails.returning_departure}}]
+				</span> 
+				<label class="col-sm-2">Arrival : </label> 
+				<span class="col-sm-4">
+					<span class='badge alert-info'> {{flightDetails.departFrom}}</span> 
+					[{{flightDetails.returning_arrival}}]
+				</span>
+			</div>
+
+			<hr />
+
+			<div class="form-group">
+				<label class="col-sm-2">Num Adults: </label> <span class="col-sm-4">
+					{{numAdults}}</span> <label class="col-sm-2">Num Children: </label> <span
+					class="col-sm-4"> {{numChildren}}</span>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2">Total Cost (&pound): </label> <span
+					class="col-sm-4"> {{flightDetails.totalCost}}</span>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!--  PERSONAL DETAILS FORM  -->
+	<div class='panel-heading'>Personal & Payment Details</div>
+
+	<div class='panel-body'>
+
+		<form name='personalDetailsForm' role="form" class='form-horizontal' novalidate="novalidate">
+
+			<div id="personalDetailsPanel" style='float: left; width: 60%'>
+			
+				<div class="form-group">
+					<label class="col-sm-2 control-label">First Name: </label>
+					<div class="col-sm-4">
+						<input name='firstName' class='form-control' type='text'
+							ng-model='personalDetails.firstName' placeholder="forename"
+							ng-minlength="2" />
+					</div>
+					
+					<div ng-messages="personalDetailsForm.firstName.$error">
+					    <div ng-message="minlength">First Name needs to be longer than 2 characters</div>
+				    </div>
+					
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Name: </label>
+					<div class="col-sm-4">
+						<input name='lastName' class='form-control' type='text'
+							ng-model='personalDetails.lastName' placeholder="surname" 
+							ng-minlength="3"/>
+					</div>
+
+					<div ng-messages="personalDetailsForm.lastName.$error">
+					    <div ng-message="minlength">Last Name needs to be longer than 3 characters</div>
+				    </div>
+					
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">1st line of Address:
+					</label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text'
+							ng-model='personalDetails.Address.firstLineAddress'
+							placeholder="1st line of address" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">City: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text'
+							ng-model='personalDetails.Address.city' placeholder="Name of City" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Post Code: </label>
+					<div class="col-sm-4">
+						<input class='form-control' type='text'
+							ng-model='personalDetails.Address.postcode' placeholder="Post code" />
+					</div>
+				</div>
+
+				<div class="form-group" ng-class="{'has-error': personalDetailsForm.emailInput.$invalid && personalDetailsForm.emailInput.$dirty}">
+					<label class="col-sm-2 control-label">email: </label>
+					<div class="col-sm-4">
+						<input name='emailInput' class='form-control' type='email'
+							ng-model='personalDetails.email' placeholder="email" required />							
+					</div>
+										 
+					<div ng-messages="personalDetailsForm.emailInput.$error">
+					    <div style='color:maroon; font-style:bold' ng-message="required"> * required</div>
+					    <div ng-message="email">invalid email</div>
+				    </div>
+				</div>
+
+				<div class="form-group" ng-class="{'has-error': personalDetailsForm.phone.$invalid && personalDetailsForm.phone.$dirty}">
+					<label class="col-sm-2 control-label">Mobile Phone: </label>
+					<div class="col-sm-4">
+						<input name='phone' class='form-control' type='text'
+							ng-model='personalDetails.phone' placeholder="phone" 
+							ng-pattern='/^[0-9]{11}$/'
+							mobile 							
+							required />
+							 
+					</div>
+
+					<div ng-messages="personalDetailsForm.phone.$error">										
+					    <div style='color:maroon; font-style:bold' ng-message="mobile"> Needs to start with 0781</div>
+					    <div style='color:maroon; font-style:bold' ng-message="required"> * required</div>					    
+					    <div ng-message="pattern">Phone Number needs to be a 11 digit number</div>
+				    </div>
+
+				</div>
+
+
+			</div>
+			<div style='float: right; width: 35%'>
+
+				<div class="form-group" ng-class="{'has-error': personalDetailsForm.cardNumber.$invalid  && personalDetailsForm.cardNumber.$dirty}">
+					<label class="col-sm-4 control-label">Card Number: </label>
+					<div class="col-sm-6">
+						<input name='cardNumber' class='form-control' type='text'
+							ng-model='personalDetails.cardnumber' placeholder="card number" 
+							ng-pattern="/^[0-9]{1,16}$/"
+							ng-minlength="16"
+							ng-maxlength="16"
+							required />
+					</div>
+					
+					<div ng-messages="personalDetailsForm.cardNumber.$error">
+					    <div style='color:maroon; font-style:bold' ng-message="required"> * required</div>
+					    <div ng-message="pattern">Card Number needs to be a 16 digit number</div>
+					    <div ng-message="minlength">Card Number is too short</div>
+					    <!--  following is redundant since the pattern message kicks in once num digits > 16 -->
+					    <div ng-message="maxlength">Card Number is to long</div>
+				    </div>
+					
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Expiry Month: </label>
+					<div class="col-sm-3">
+						<select class='form-control' ng-model="personalDetails.expiryMonth"
+							ng-options="month.value for month in monthSelect"></select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Expiry Year: </label>
+					<div class="col-sm-3">
+						<select class='form-control' ng-model="personalDetails.expiryYear"
+							ng-options="year.value for year in yearSelect"></select>
+					</div>					
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<button type="submit" class="btn btn-info" ng-click="submit()" ng-disabled="personalDetailsForm.$invalid">Book Now</button>
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</form>
+	</div>
+</div>
