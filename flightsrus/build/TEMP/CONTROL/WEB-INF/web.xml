@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-
-	<display-name>Hello, World Application</display-name>
-	<description>
-	This is a simple web application with a source code organization
-	based on the recommendations of the Application Developer's Guide.
-    </description>
-</web-app>
